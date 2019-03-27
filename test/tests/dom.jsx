@@ -2,8 +2,9 @@
 /** @jsx node */
 /** @jsxFrag Fragment */
 /* eslint max-lines: off */
+/* eslint react/prop-types: 0 */
 
-import { node, Fragment } from 'jsx-pragmatic';
+import { node, Fragment } from 'jsx-pragmatic'; // eslint-disable-line no-unused-vars
 
 import { dom } from '../../src';
 
@@ -69,8 +70,8 @@ describe('dom renderer cases', () => {
         validateDOM(domNode, {
             name:  'button',
             attrs: {
-                class:  bar,
-                type: 'submit'
+                class: bar,
+                type:  'submit'
             },
             children: [
                 {
@@ -147,7 +148,7 @@ describe('dom renderer cases', () => {
         let clicked = false;
 
         const jsxNode = (
-            <button onClick={ () => { clicked = true; } }>click me</button>
+            <button type='submit' onClick={ () => { clicked = true; } }>click me</button>
         );
 
         const domNode = jsxNode.render(dom());
@@ -272,7 +273,7 @@ describe('dom renderer cases', () => {
     it('should error when a object is passed as a prop', () => {
 
         const jsxNode = (
-            <button beep={ { hello: 'world' } }>click me</button>
+            <button type='submit' beep={ { hello: 'world' } }>click me</button>
         );
 
         let error;
@@ -406,7 +407,7 @@ describe('dom renderer cases', () => {
                     <body>
                         <section foo={ null } bar={ undefined }>
                             <p hello={ true } />
-                            <button foo={ bar }>click me</button>
+                            <button type='submit' foo={ bar }>click me</button>
                         </section>
                     </body>
                 </html>
@@ -566,7 +567,7 @@ describe('dom renderer cases', () => {
             <section foo={ null } bar={ undefined }>
                 <p hello={ true } />
                 <node el={ myNode } />
-                <button foo={ bar }>click me</button>
+                <button type='submit' foo={ bar }>click me</button>
             </section>
         );
 
@@ -606,7 +607,7 @@ describe('dom renderer cases', () => {
 
         const MyButton = ({ foo }) => {
             return (
-                <button foo={ foo }>click me</button>
+                <button type='submit' foo={ foo }>click me</button>
             );
         };
 
@@ -635,7 +636,7 @@ describe('dom renderer cases', () => {
 
         const MyButton = ({ foo }, children) => {
             return (
-                <button foo={ foo }>{ children}</button>
+                <button type='submit' foo={ foo }>{ children}</button>
             );
         };
 
@@ -664,7 +665,7 @@ describe('dom renderer cases', () => {
 
         const MyButton = ({ foo }, children) => {
             return (
-                <button foo={ foo }>{ children}</button>
+                <button type='submit' foo={ foo }>{ children}</button>
             );
         };
 
@@ -704,7 +705,7 @@ describe('dom renderer cases', () => {
         const jsxNode = (
             // $FlowFixMe
             <>
-                <button foo={ bar }>click me</button>
+                <button type='submit' foo={ bar }>click me</button>
                 <span>meep</span>
                 <p><div zomg="womg">way</div></p>
             </>
@@ -751,7 +752,7 @@ describe('dom renderer cases', () => {
         const jsxNode = (
             // $FlowFixMe
             <>
-                <button foo={ bar }>click me</button>
+                <button type='submit' foo={ bar }>click me</button>
                 { false }
                 <span>meep</span>
                 { null }
@@ -799,7 +800,7 @@ describe('dom renderer cases', () => {
         const bar = 'baz';
         const Foo = () => {
             return [
-                <button foo={ bar }>click me</button>,
+                <button type='submit' foo={ bar }>click me</button>,
                 <span>meep</span>,
                 <p><div zomg="womg">way</div></p>
             ];

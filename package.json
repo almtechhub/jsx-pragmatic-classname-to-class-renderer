@@ -1,7 +1,7 @@
 {
-  "name": "grumbler",
-  "version": "1.0.3",
-  "description": "Javascript module template.",
+  "name": "jsx-pragmatic-classname-to-class-renderer",
+  "version": "0.0.1",
+  "description": "Renderer for jsx-pragmatic to convert className to class.",
   "main": "index.js",
   "scripts": {
     "setup": "npm install && npm run flow-typed",
@@ -49,6 +49,7 @@
   "devDependencies": {
     "flow-bin": "^0.85",
     "grumbler-scripts": "^3",
-    "jsx-pragmatic": "^2.0.4"
+    "jsx-pragmatic": "^2.0.4",
+    "mocha": "^4.1.0"
   }
 }

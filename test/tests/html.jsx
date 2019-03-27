@@ -1,10 +1,11 @@
 /* @flow */
 /** @jsx node */
 /** @jsxFrag Fragment */
+/* eslint react/prop-types: 0 */
 
-import { node, Fragment } from 'jsx-pragmatic';
+import { node, Fragment } from 'jsx-pragmatic'; // eslint-disable-line no-unused-vars
 
-import { html } from '../../src'; // eslint-disable-line no-unused-vars
+import { html } from '../../src';
 
 describe('html renderer cases', () => {
     it('should switch className prop to class', () => {
@@ -12,11 +13,11 @@ describe('html renderer cases', () => {
         const bar = 'baz';
 
         const jsxNode = (
-            <button className={ bar }>click me</button>
+            <button type="submit" className={ bar }>click me</button>
         );
 
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<button class="baz">click me</button>`;
+        const htmlExpected = `<button type="submit" class="baz">click me</button>`;
 
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
@@ -28,11 +29,11 @@ describe('html renderer cases', () => {
         const bar = 'baz';
 
         const jsxNode = (
-            <button foo={ bar }>click me</button>
+            <button type="submit" foo={ bar }>click me</button>
         );
 
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<button foo="baz">click me</button>`;
+        const htmlExpected = `<button type="submit" foo="baz">click me</button>`;
 
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
@@ -47,12 +48,12 @@ describe('html renderer cases', () => {
             <section>
                 This is some text
                 <p n={ 1 } hello={ true } />
-                <button foo={ bar } baz='' zomg={ { hello: 'world' } }>click me</button>
+                <button type="submit" foo={ bar } baz='' zomg={ { hello: 'world' } }>click me</button>
             </section>
         );
 
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<section>This is some text<p n="1" hello></p><button foo="baz">click me</button></section>`;
+        const htmlExpected = `<section>This is some text<p n="1" hello></p><button type="submit" foo="baz">click me</button></section>`;
 
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
@@ -62,11 +63,11 @@ describe('html renderer cases', () => {
     it('should escape special characters', () => {
         
         const jsxNode = (
-            <button foo={ `&"'$%<>` } { ...{ '$"\'': '<><>%$&' } }>${ `a&<<b>c"<d'''/` }</button>
+            <button type="submit" foo={ `&"'$%<>` } { ...{ '$"\'': '<><>%$&' } }>${ `a&<<b>c"<d'''/` }</button>
         );
 
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<button foo="&amp;&quot;&#39;$%&lt;&gt;" $&quot;&#39;="&lt;&gt;&lt;&gt;%$&amp;">$a&amp;&lt;&lt;b&gt;c&quot;&lt;d&#39;&#39;&#39;&#x2F;</button>`;
+        const htmlExpected = `<button type="submit" foo="&amp;&quot;&#39;$%&lt;&gt;" $&quot;&#39;="&lt;&gt;&lt;&gt;%$&amp;">$a&amp;&lt;&lt;b&gt;c&quot;&lt;d&#39;&#39;&#39;&#x2F;</button>`;
 
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
@@ -108,7 +109,7 @@ describe('html renderer cases', () => {
 
         const MyButton = ({ foo }) => {
             return (
-                <button foo={ foo }>click me</button>
+                <button type="submit" foo={ foo }>click me</button>
             );
         };
 
@@ -119,7 +120,7 @@ describe('html renderer cases', () => {
         );
 
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<button foo="baz">click me</button>`;
+        const htmlExpected = `<button type="submit" foo="baz">click me</button>`;
 
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
@@ -130,7 +131,7 @@ describe('html renderer cases', () => {
 
         const MyButton = ({ foo }, children) => {
             return (
-                <button foo={ foo }>{ children }</button>
+                <button type="submit" foo={ foo }>{ children }</button>
             );
         };
 
@@ -141,7 +142,7 @@ describe('html renderer cases', () => {
         );
 
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<button foo="baz">click me</button>`;
+        const htmlExpected = `<button type="submit" foo="baz">click me</button>`;
 
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
@@ -152,7 +153,7 @@ describe('html renderer cases', () => {
 
         const MyButton = ({ foo }, children) => {
             return (
-                <button foo={ foo }>{ children }</button>
+                <button type="submit" foo={ foo }>{ children }</button>
             );
         };
 
@@ -163,7 +164,7 @@ describe('html renderer cases', () => {
         );
 
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<button foo="baz"><b>please</b> click me</button>`;
+        const htmlExpected = `<button type="submit" foo="baz"><b>please</b> click me</button>`;
 
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
@@ -176,11 +177,11 @@ describe('html renderer cases', () => {
             <>
                 <span foo="bar"><p>hello</p></span>
                 <p>wat</p>
-                <button>click me</button>
+                <button type="submit">click me</button>
             </>
         );
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<span foo="bar"><p>hello</p></span><p>wat</p><button>click me</button>`;
+        const htmlExpected = `<span foo="bar"><p>hello</p></span><p>wat</p><button type="submit">click me</button>`;
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
         }
@@ -190,14 +191,14 @@ describe('html renderer cases', () => {
             return [
                 <span foo="bar"><p>hello</p></span>,
                 <p>wat</p>,
-                <button>click me</button>
+                <button type="submit">click me</button>
             ];
         };
         const jsxNode = (
             <Foo />
         );
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<span foo="bar"><p>hello</p></span><p>wat</p><button>click me</button>`;
+        const htmlExpected = `<span foo="bar"><p>hello</p></span><p>wat</p><button type="submit">click me</button>`;
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
         }
@@ -233,10 +234,10 @@ describe('html renderer cases', () => {
     it('should treat <br> as a self-closing tag', () => {
         const bar = 'baz';
         const jsxNode = (
-            <button foo={ bar }>click<br />me</button>
+            <button type="submit" foo={ bar }>click<br />me</button>
         );
         const htmlString = jsxNode.render(html());
-        const htmlExpected = `<button foo="baz">click<br />me</button>`;
+        const htmlExpected = `<button type="submit" foo="baz">click<br />me</button>`;
         if (htmlString !== htmlExpected) {
             throw new Error(`Expected:\n\n${ htmlExpected }\n\nActual:\n\n${ htmlString }\n`);
         }
