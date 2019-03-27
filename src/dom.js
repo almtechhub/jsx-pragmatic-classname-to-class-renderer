@@ -1,8 +1,8 @@
 /* @flow */
 
-import { ComponentNode, TextNode, type NodeRenderer, ElementNode } from '../node';
-import { NODE_TYPE } from '../constants';
-import { uniqueID } from '../util';
+import { ComponentNode, TextNode, type NodeRenderer, ElementNode } from 'jsx-pragmatic';
+import { NODE_TYPE } from 'jsx-pragmatic';
+import { uniqueID } from './util';
 
 type DomNodeRenderer = NodeRenderer<ElementNode, HTMLElement>;
 type DomTextRenderer = NodeRenderer<TextNode, Text>;
@@ -64,8 +64,8 @@ function addProps(el : HTMLElement, node) {
         if (prop.match(/^on[A-Z][a-z]/) && typeof val === 'function') {
             el.addEventListener(prop.slice(2).toLowerCase(), val);
         } else if (typeof val === 'string' || typeof val === 'number') {
-            el.setAttribute(prop, val.toString());
-
+            const classTransform = prop === 'className' ? 'class' : prop;
+            el.setAttribute(classTransform, val.toString());
         } else if (typeof val === 'boolean') {
             if (val === true) {
                 el.setAttribute(prop, '');
