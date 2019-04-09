@@ -1,6 +1,7 @@
 /* @flow */
 
-import { ComponentNode, TextNode, ElementNode, type NodePropsType, type NodeRenderer, NODE_TYPE } from 'jsx-pragmatic';
+import { ComponentNode, TextNode, ElementNode, type NodePropsType, type NodeRenderer } from '../node';
+import { NODE_TYPE } from '../constants';
 
 type HTMLRenderer = NodeRenderer<ElementNode | TextNode | ComponentNode<*>, string>;
 
@@ -25,6 +26,10 @@ function htmlEncode(text : string) : string {
 function propsToHTML(props : NodePropsType) : string {
 
     const keys = Object.keys(props).filter(key => {
+        if (key === 'children') {
+            return false;
+        }
+        
         const val = props[key];
 
         if (key === ELEMENT_PROP.INNER_HTML) {
@@ -56,8 +61,8 @@ function propsToHTML(props : NodePropsType) : string {
         if (typeof val !== 'string' && typeof val !== 'number') {
             throw new TypeError(`Unexpected prop type: ${ typeof val }`);
         }
-        const classTransform = key === 'className' ? 'class' : key;
-        return `${ htmlEncode(classTransform) }="${ htmlEncode(val.toString()) }"`;
+
+        return `${ htmlEncode(key) }="${ htmlEncode(val.toString()) }"`;
     });
 
     return ` ${ pairs.join(' ') }`;
