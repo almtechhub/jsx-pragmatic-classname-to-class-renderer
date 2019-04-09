@@ -53,6 +53,11 @@ function addProps(el, node) {
 
   for (var _i4 = 0, _Object$keys2 = Object.keys(props); _i4 < _Object$keys2.length; _i4++) {
     var prop = _Object$keys2[_i4];
+
+    if (prop === 'children') {
+      continue;
+    }
+
     var val = props[prop];
 
     if (val === null || typeof val === 'undefined' || prop === ELEMENT_PROP.EL || prop === ELEMENT_PROP.INNER_HTML) {

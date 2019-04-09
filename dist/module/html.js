@@ -12,6 +12,10 @@ function htmlEncode(text) {
 
 function propsToHTML(props) {
   var keys = Object.keys(props).filter(function (key) {
+    if (key === 'children') {
+      return false;
+    }
+
     var val = props[key];
 
     if (key === ELEMENT_PROP.INNER_HTML) {
