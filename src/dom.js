@@ -1,8 +1,8 @@
 /* @flow */
 
-import { ComponentNode, TextNode, type NodeRenderer, ElementNode } from '../node';
-import { NODE_TYPE } from '../constants';
-import { uniqueID } from '../util';
+import { ComponentNode, TextNode, type NodeRenderer, ElementNode, NODE_TYPE } from 'jsx-pragmatic';
+
+import { uniqueID } from './util';
 
 type DomNodeRenderer = NodeRenderer<ElementNode, HTMLElement>;
 type DomTextRenderer = NodeRenderer<TextNode, Text>;

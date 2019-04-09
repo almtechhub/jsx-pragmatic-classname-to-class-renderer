@@ -1,7 +1,6 @@
 /* @flow */
 
-import { ComponentNode, TextNode, ElementNode, type NodePropsType, type NodeRenderer } from '../node';
-import { NODE_TYPE } from '../constants';
+import { ComponentNode, TextNode, ElementNode, type NodePropsType, type NodeRenderer, NODE_TYPE } from 'jsx-pragmatic';
 
 type HTMLRenderer = NodeRenderer<ElementNode | TextNode | ComponentNode<*>, string>;
 
