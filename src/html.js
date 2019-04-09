@@ -61,7 +61,8 @@ function propsToHTML(props : NodePropsType) : string {
             throw new TypeError(`Unexpected prop type: ${ typeof val }`);
         }
 
-        return `${ htmlEncode(key) }="${ htmlEncode(val.toString()) }"`;
+        const classTransform = key === 'className' ? 'class' : key;
+        return `${ htmlEncode(classTransform) }="${ htmlEncode(val.toString()) }"`;
     });
 
     return ` ${ pairs.join(' ') }`;
