@@ -1,6 +1,6 @@
 {
   "name": "jsx-pragmatic-classname-to-class-renderer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Renderer for jsx-pragmatic to convert className to class.",
   "main": "index.js",
   "scripts": {
